@@ -1,6 +1,6 @@
 package com.michael.college_management_system.security;
 
-import com.michael.college_management_system.model.Student;
+import com.michael.college_management_system.model.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -11,29 +11,29 @@ import java.util.Arrays;
 import java.util.Collection;
 
 @Getter
-public class StudentPrincipal implements UserDetails {
+public class UserPrincipal implements UserDetails {
 
-    private final Student student;
+    private final User user;
 
-    public StudentPrincipal(Student student) {
-        this.student = student;
+    public UserPrincipal(User user) {
+        this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.stream(StringUtils.tokenizeToStringArray(this.student.getRoles(), " "))
+        return Arrays.stream(StringUtils.tokenizeToStringArray(this.user.getRoles(), " "))
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
                 .toList();
     }
 
     @Override
     public String getPassword() {
-        return this.student.getPassword();
+        return this.user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return this.student.getUsername();
+        return this.user.getUsername();
     }
 
     @Override

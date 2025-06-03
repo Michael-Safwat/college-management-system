@@ -58,6 +58,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                                 .requestMatchers(HttpMethod.GET, this.baseUrl + "/login/**").permitAll()
                                 .requestMatchers(HttpMethod.POST, this.baseUrl + "/students/register/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, this.baseUrl + "/admins/register/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, this.baseUrl + "/students/**").hasAnyAuthority("ROLE_student")
                                 .requestMatchers(HttpMethod.POST, this.baseUrl + "/students").hasAnyAuthority("ROLE_student")
                                 .requestMatchers(HttpMethod.PUT, this.baseUrl + "/students/**").hasAnyAuthority("ROLE_student")

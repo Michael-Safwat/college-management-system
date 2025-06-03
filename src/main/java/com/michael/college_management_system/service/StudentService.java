@@ -4,7 +4,7 @@ import com.michael.college_management_system.dto.StudentDTO;
 import com.michael.college_management_system.helpers.mapper.StudentMapper;
 import com.michael.college_management_system.model.Student;
 import com.michael.college_management_system.repository.StudentRepository;
-import com.michael.college_management_system.security.StudentPrincipal;
+import com.michael.college_management_system.security.UserPrincipal;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StudentService implements UserDetailsService {
+public class StudentService  {
 
     private final StudentRepository studentRepository;
     private final PasswordEncoder passwordEncoder;
@@ -36,11 +36,5 @@ public class StudentService implements UserDetailsService {
         return StudentMapper.toStudentDTO(savedStudent);
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        return this.studentRepository.findByUsername(username)
-                .map(student -> new StudentPrincipal(student))
-                .orElseThrow(() -> new UsernameNotFoundException("username " + username + " is not found."));
-    }
 }

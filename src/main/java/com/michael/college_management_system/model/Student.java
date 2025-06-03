@@ -2,6 +2,7 @@ package com.michael.college_management_system.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,18 +12,10 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class Student {
+@SuperBuilder
+public class Student extends User{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    private String password;
-    private String username;
-    private String roles;
-
-    private String name;
     private LocalDate dateOfBirth;
     private LocalDate joiningDate;
     private LocalDate graduationDate;

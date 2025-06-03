@@ -1,6 +1,5 @@
 package com.michael.college_management_system.dto;
 
-import com.michael.college_management_system.model.Grade;
 import com.michael.college_management_system.model.Student;
 import lombok.*;
 
