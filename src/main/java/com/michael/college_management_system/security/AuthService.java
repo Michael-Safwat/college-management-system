@@ -30,14 +30,14 @@ public class AuthService {
         //create JWT
         Map<String, Object> loginResultMap = new HashMap<>();
 
-        if(user.getRoles().equals("ROLE_student")){
+        if(user.getRoles().equals("student")){
             StudentDTO studentDTO = StudentMapper.toStudentDTO((Student) user);
             String token = this.jwtProvider.createToken(authentication);
 
             loginResultMap.put("studentInfo", studentDTO);
             loginResultMap.put("token", token);
         }
-        else if(user.getRoles().equals("ROLE_admin")){
+        else if(user.getRoles().equals("admin")){
             AdminDTO adminDTO = AdminMapper.toAdminDTO((Admin) user);
             String token = this.jwtProvider.createToken(authentication);
 

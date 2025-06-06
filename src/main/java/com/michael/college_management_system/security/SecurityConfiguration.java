@@ -23,6 +23,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -38,13 +39,14 @@ public class SecurityConfiguration {
 
     private final RSAPublicKey publicKey;
     private final RSAPrivateKey privateKey;
+    private final CustomBasicAuthenticationEntryPoint customBasicAuthenticationEntryPoint;
+    private final CustomBearerTokenAuthenticationEntryPoint customBearerTokenAuthenticationEntryPoint;
+    private final CustomBearerTokenAccessDeniedHandler customBearerTokenAccessDeniedHandler;
 
-    public SecurityConfiguration(RSAPublicKey publicKey, RSAPrivateKey privateKey) {
-        this.publicKey = publicKey;
-        this.privateKey = privateKey;
-    }
-
-    public SecurityConfiguration() throws NoSuchAlgorithmException {
+    public SecurityConfiguration(CustomBasicAuthenticationEntryPoint customBasicAuthenticationEntryPoint, CustomBearerTokenAuthenticationEntryPoint customBearerTokenAuthenticationEntryPoint, CustomBearerTokenAccessDeniedHandler customBearerTokenAccessDeniedHandler) throws NoSuchAlgorithmException {
+        this.customBasicAuthenticationEntryPoint = customBasicAuthenticationEntryPoint;
+        this.customBearerTokenAuthenticationEntryPoint = customBearerTokenAuthenticationEntryPoint;
+        this.customBearerTokenAccessDeniedHandler = customBearerTokenAccessDeniedHandler;
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         keyPairGenerator.initialize(2048); // the generated key will have a size of 2048 bits
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
@@ -57,21 +59,24 @@ public class SecurityConfiguration {
         return httpSecurity
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                                 .requestMatchers(HttpMethod.GET, this.baseUrl + "/login/**").permitAll()
-                                .requestMatchers(HttpMethod.POST, this.baseUrl + "/students/register/**").permitAll()
-                                .requestMatchers(HttpMethod.POST, this.baseUrl + "/admins/register/**").permitAll()
-                                .requestMatchers(HttpMethod.GET, this.baseUrl + "/students/**").hasAnyAuthority("ROLE_student")
-                                .requestMatchers(HttpMethod.POST, this.baseUrl + "/students").hasAnyAuthority("ROLE_student")
-                                .requestMatchers(HttpMethod.PUT, this.baseUrl + "/students/**").hasAnyAuthority("ROLE_student")
-                                .requestMatchers(HttpMethod.DELETE, this.baseUrl + "/students/**").hasAnyAuthority("ROLE_student")
-//                        .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll()
+                                .requestMatchers(HttpMethod.POST, this.baseUrl + "/students/register/**").hasAnyAuthority("ROLE_admin")
+                                .requestMatchers(HttpMethod.POST, this.baseUrl + "/admins/register/**").hasAnyAuthority("ROLE_admin")
+                                .requestMatchers(HttpMethod.GET, this.baseUrl + "/students").hasAnyAuthority("ROLE_admin")
+                                .requestMatchers(HttpMethod.GET, this.baseUrl + "/students/{studentId}").hasAnyAuthority("ROLE_admin","ROLE_student")
+                                .requestMatchers(HttpMethod.DELETE, this.baseUrl + "/students/{studentId}").hasAnyAuthority("ROLE_admin")
+//                                .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll() // Explicitly fallback to antMatcher inside requestMatchers.
 
                                 // Disallow anything else.
                                 .anyRequest().authenticated()
-                ).csrf(AbstractHttpConfigurer::disable)
-                .httpBasic(Customizer.withDefaults())
-                .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer.jwt(Customizer.withDefaults()))
+                )
+//                .headers(headers -> headers.frameOptions(Customizer.withDefaults()).disable()) // This is for H2 browser console access.
+                .csrf(AbstractHttpConfigurer::disable)
+                .httpBasic(httpBasic -> httpBasic.authenticationEntryPoint(this.customBasicAuthenticationEntryPoint))
+                .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer
+                        .jwt(Customizer.withDefaults())
+                        .authenticationEntryPoint(this.customBearerTokenAuthenticationEntryPoint)
+                        .accessDeniedHandler(this.customBearerTokenAccessDeniedHandler))
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .headers.frameOptions(Customizer.withDefaults())
                 .build();
     }
 
