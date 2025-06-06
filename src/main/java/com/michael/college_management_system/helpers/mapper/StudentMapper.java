@@ -15,7 +15,7 @@ public class StudentMapper {
                 .gpa(student.getGpa())
                 .joiningDate(student.getJoiningDate())
                 .graduationDate(student.getGraduationDate())
-                .department(student.getDepartment())
+                .department(student.getDepartment().name())
                 .build();
     }
 }

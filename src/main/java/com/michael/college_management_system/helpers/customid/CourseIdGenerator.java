@@ -17,6 +17,6 @@ public class CourseIdGenerator implements IdentifierGenerator {
 
     @Override
     public Serializable generate(SharedSessionContractImplementor session, Object object) {
-        return "COURSE-" + UUID.randomUUID().toString().substring(0,8).toUpperCase();
+        return "COURSE-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
     }
 }

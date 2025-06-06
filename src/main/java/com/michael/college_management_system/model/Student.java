@@ -13,13 +13,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-public class Student extends User{
+public class Student extends User {
 
 
     private LocalDate dateOfBirth;
     private LocalDate joiningDate;
     private LocalDate graduationDate;
     private Double gpa;
+    @Enumerated(EnumType.STRING)
     private Department department;
 
     @ManyToMany

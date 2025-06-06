@@ -62,7 +62,8 @@ public class SecurityConfiguration {
                                 .requestMatchers(HttpMethod.POST, this.baseUrl + "/students/register/**").hasAnyAuthority("ROLE_admin")
                                 .requestMatchers(HttpMethod.POST, this.baseUrl + "/admins/register/**").hasAnyAuthority("ROLE_admin")
                                 .requestMatchers(HttpMethod.GET, this.baseUrl + "/students").hasAnyAuthority("ROLE_admin")
-                                .requestMatchers(HttpMethod.GET, this.baseUrl + "/students/{studentId}").hasAnyAuthority("ROLE_admin","ROLE_student")
+                                .requestMatchers(HttpMethod.GET, this.baseUrl + "/students/topByDepartment").hasAnyAuthority("ROLE_admin")
+                                .requestMatchers(HttpMethod.GET, this.baseUrl + "/students/{studentId}").hasAnyAuthority("ROLE_admin", "ROLE_student")
                                 .requestMatchers(HttpMethod.DELETE, this.baseUrl + "/students/{studentId}").hasAnyAuthority("ROLE_admin")
 //                                .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll() // Explicitly fallback to antMatcher inside requestMatchers.
 

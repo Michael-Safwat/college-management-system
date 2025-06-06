@@ -21,7 +21,7 @@ public class AdminController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<AdminDTO> registerAdmin(@RequestBody Admin admin){
+    public ResponseEntity<AdminDTO> registerAdmin(@RequestBody Admin admin) {
         return new ResponseEntity<>(adminService.registerAdmin(admin), HttpStatus.CREATED);
     }
 }

@@ -2,20 +2,26 @@ package com.michael.college_management_system.service;
 
 import com.michael.college_management_system.dto.StudentDTO;
 import com.michael.college_management_system.helpers.mapper.StudentMapper;
+import com.michael.college_management_system.model.Department;
 import com.michael.college_management_system.model.Student;
 import com.michael.college_management_system.repository.StudentRepository;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
-public class StudentService  {
+public class StudentService {
 
     private final StudentRepository studentRepository;
     private final PasswordEncoder passwordEncoder;
@@ -31,7 +37,7 @@ public class StudentService  {
         return StudentMapper.toStudentDTO(savedStudent);
     }
 
-    public Page<StudentDTO> getAllStudents(Pageable pageable, Boolean isGraduate){
+    public Page<StudentDTO> getAllStudents(Pageable pageable, Boolean isGraduate) {
         Specification<Student> spec = (root, query, criteriaBuilder) -> {
             if (isGraduate == null) {
                 // If isGraduate is not provided, no filter applied for graduation status
@@ -53,6 +59,15 @@ public class StudentService  {
 
         Page<Student> students = studentRepository.findAll(spec, pageable);
         return students.map(StudentMapper::toStudentDTO);
+    }
+
+    @PostFilter("filterObject.department == #department.name()")
+    public List<StudentDTO> getTopStudentsByDepartment(Department department, int limit) {
+
+        Pageable pageable = PageRequest.of(0, limit, Sort.by(Sort.Direction.DESC, "gpa"));
+        return studentRepository.findAll(pageable).stream()
+                .map(StudentMapper::toStudentDTO)
+                .collect(Collectors.toList());
     }
 
     public StudentDTO getStudentById(Long studentId) {

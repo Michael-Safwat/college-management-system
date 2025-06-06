@@ -20,5 +20,5 @@ public class StudentDTO {
     private LocalDate joiningDate;
     private LocalDate graduationDate;
     private Double gpa;
-    private Department department;
+    private String department;
 }

@@ -41,6 +41,7 @@ public class ExceptionHandlerAdvice {
 
     /**
      * Fallback handles any unhandled exceptions
+     *
      * @param ex
      * @return
      */
