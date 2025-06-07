@@ -1,2 +1,2 @@
 # college-management-system
-https://.postman.co/workspace/My-Workspace~9c165fa7-24b1-4749-84b8-50baee96b363/collection/31618688-2f6d0138-f62a-482f-997b-08f6b18f61af?action=share&creator=31618688
+[<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://god.gw.postman.com/run-collection/31618688-2f6d0138-f62a-482f-997b-08f6b18f61af?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D31618688-2f6d0138-f62a-482f-997b-08f6b18f61af%26entityType%3Dcollection%26workspaceId%3D92dab173-861a-4e51-ae06-fb5ed63a8a04)
