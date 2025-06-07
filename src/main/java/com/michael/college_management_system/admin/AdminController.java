@@ -1,8 +1,5 @@
-package com.michael.college_management_system.Controller;
+package com.michael.college_management_system.admin;
 
-import com.michael.college_management_system.dto.AdminDTO;
-import com.michael.college_management_system.model.Admin;
-import com.michael.college_management_system.service.AdminService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

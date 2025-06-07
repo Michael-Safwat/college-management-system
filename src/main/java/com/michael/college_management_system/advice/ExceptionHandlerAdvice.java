@@ -1,4 +1,4 @@
-package com.michael.college_management_system.helpers.advice;
+package com.michael.college_management_system.advice;
 
 import com.michael.college_management_system.helpers.Result;
 import com.michael.college_management_system.helpers.StatusCode;

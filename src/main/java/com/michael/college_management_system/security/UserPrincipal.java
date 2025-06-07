@@ -1,6 +1,6 @@
 package com.michael.college_management_system.security;
 
-import com.michael.college_management_system.model.User;
+import com.michael.college_management_system.user.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

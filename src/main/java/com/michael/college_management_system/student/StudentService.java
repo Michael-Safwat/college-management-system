@@ -1,10 +1,5 @@
-package com.michael.college_management_system.service;
+package com.michael.college_management_system.student;
 
-import com.michael.college_management_system.dto.StudentDTO;
-import com.michael.college_management_system.helpers.mapper.StudentMapper;
-import com.michael.college_management_system.model.Department;
-import com.michael.college_management_system.model.Student;
-import com.michael.college_management_system.repository.StudentRepository;
 import jakarta.persistence.criteria.Predicate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

@@ -1,9 +1,5 @@
-package com.michael.college_management_system.Controller;
+package com.michael.college_management_system.student;
 
-import com.michael.college_management_system.dto.StudentDTO;
-import com.michael.college_management_system.model.Department;
-import com.michael.college_management_system.model.Student;
-import com.michael.college_management_system.service.StudentService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -11,7 +7,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

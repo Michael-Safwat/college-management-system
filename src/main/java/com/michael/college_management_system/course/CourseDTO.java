@@ -1,6 +1,6 @@
-package com.michael.college_management_system.dto;
+package com.michael.college_management_system.course;
 
-import com.michael.college_management_system.model.Student;
+import com.michael.college_management_system.student.Student;
 import lombok.*;
 
 import java.time.Year;

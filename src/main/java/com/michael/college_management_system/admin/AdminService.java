@@ -1,9 +1,5 @@
-package com.michael.college_management_system.service;
+package com.michael.college_management_system.admin;
 
-import com.michael.college_management_system.dto.AdminDTO;
-import com.michael.college_management_system.helpers.mapper.AdminMapper;
-import com.michael.college_management_system.model.Admin;
-import com.michael.college_management_system.repository.AdminRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

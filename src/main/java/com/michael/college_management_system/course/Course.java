@@ -1,6 +1,7 @@
-package com.michael.college_management_system.model;
+package com.michael.college_management_system.course;
 
-import com.michael.college_management_system.helpers.customid.CourseIdGenerator;
+import com.michael.college_management_system.student.Department;
+import com.michael.college_management_system.student.Student;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
