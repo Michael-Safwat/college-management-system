@@ -39,11 +39,8 @@ public class ExceptionHandlerAdvice {
         return new Result(false, StatusCode.FORBIDDEN, "No permission", ex.getMessage());
     }
 
-    /**
+    /*
      * Fallback handles any unhandled exceptions
-     *
-     * @param ex
-     * @return
      */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

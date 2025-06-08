@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -52,7 +53,7 @@ public class StudentController {
     }
 
     @GetMapping("/{studentId}")
-    public ResponseEntity<StudentDTO> getStudentById(@PathVariable("studentId") Long studentId) {
+    public ResponseEntity<StudentDTO> getStudentById(@PathVariable("studentId") Long studentId, Authentication authentication) {
         return new ResponseEntity<>(studentService.getStudentById(studentId), HttpStatus.OK);
     }
 

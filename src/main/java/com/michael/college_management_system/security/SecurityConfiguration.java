@@ -42,11 +42,13 @@ public class SecurityConfiguration {
     private final CustomBasicAuthenticationEntryPoint customBasicAuthenticationEntryPoint;
     private final CustomBearerTokenAuthenticationEntryPoint customBearerTokenAuthenticationEntryPoint;
     private final CustomBearerTokenAccessDeniedHandler customBearerTokenAccessDeniedHandler;
+    private final UserRequestAuthorizationManager userRequestAuthorizationManager;
 
-    public SecurityConfiguration(CustomBasicAuthenticationEntryPoint customBasicAuthenticationEntryPoint, CustomBearerTokenAuthenticationEntryPoint customBearerTokenAuthenticationEntryPoint, CustomBearerTokenAccessDeniedHandler customBearerTokenAccessDeniedHandler) throws NoSuchAlgorithmException {
+    public SecurityConfiguration(CustomBasicAuthenticationEntryPoint customBasicAuthenticationEntryPoint, CustomBearerTokenAuthenticationEntryPoint customBearerTokenAuthenticationEntryPoint, CustomBearerTokenAccessDeniedHandler customBearerTokenAccessDeniedHandler, UserRequestAuthorizationManager userRequestAuthorizationManager) throws NoSuchAlgorithmException {
         this.customBasicAuthenticationEntryPoint = customBasicAuthenticationEntryPoint;
         this.customBearerTokenAuthenticationEntryPoint = customBearerTokenAuthenticationEntryPoint;
         this.customBearerTokenAccessDeniedHandler = customBearerTokenAccessDeniedHandler;
+        this.userRequestAuthorizationManager = userRequestAuthorizationManager;
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
         keyPairGenerator.initialize(2048); // the generated key will have a size of 2048 bits
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
@@ -63,7 +65,7 @@ public class SecurityConfiguration {
                                 .requestMatchers(HttpMethod.POST, this.baseUrl + "/admins/register/**").hasAnyAuthority("ROLE_admin")
                                 .requestMatchers(HttpMethod.GET, this.baseUrl + "/students").hasAnyAuthority("ROLE_admin")
                                 .requestMatchers(HttpMethod.GET, this.baseUrl + "/students/topByDepartment").hasAnyAuthority("ROLE_admin")
-                                .requestMatchers(HttpMethod.GET, this.baseUrl + "/students/{studentId}").hasAnyAuthority("ROLE_admin", "ROLE_student")
+                                .requestMatchers(HttpMethod.GET, this.baseUrl + "/students/{studentId}").access(this.userRequestAuthorizationManager) // the authorization rule is define in the UserRequestAuthorizationManager
                                 .requestMatchers(HttpMethod.DELETE, this.baseUrl + "/students/{studentId}").hasAnyAuthority("ROLE_admin")
 //                                .requestMatchers(AntPathRequestMatcher.antMatcher("/h2-console/**")).permitAll() // Explicitly fallback to antMatcher inside requestMatchers.
 
