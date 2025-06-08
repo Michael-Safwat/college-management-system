@@ -1,6 +1,6 @@
-package com.michael.college_management_system.helpers.customid;
+package com.michael.college_management_system.course;
 
-import com.michael.college_management_system.model.Department;
+import com.michael.college_management_system.student.Department;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;

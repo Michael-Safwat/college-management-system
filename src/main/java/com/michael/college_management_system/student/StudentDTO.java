@@ -1,6 +1,5 @@
-package com.michael.college_management_system.dto;
+package com.michael.college_management_system.student;
 
-import com.michael.college_management_system.model.Department;
 import lombok.*;
 
 import java.time.LocalDate;

@@ -1,5 +1,7 @@
-package com.michael.college_management_system.model;
+package com.michael.college_management_system.student;
 
+import com.michael.college_management_system.course.Course;
+import com.michael.college_management_system.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;

@@ -1,7 +1,4 @@
-package com.michael.college_management_system.helpers.mapper;
-
-import com.michael.college_management_system.dto.AdminDTO;
-import com.michael.college_management_system.model.Admin;
+package com.michael.college_management_system.admin;
 
 public class AdminMapper {
 

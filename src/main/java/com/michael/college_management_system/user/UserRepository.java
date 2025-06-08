@@ -1,7 +1,5 @@
-package com.michael.college_management_system.repository;
+package com.michael.college_management_system.user;
 
-import com.michael.college_management_system.model.Student;
-import com.michael.college_management_system.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,4 +1,4 @@
-package com.michael.college_management_system.model;
+package com.michael.college_management_system.student;
 
 public enum Department {
 

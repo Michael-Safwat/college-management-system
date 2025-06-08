@@ -1,4 +1,4 @@
-package com.michael.college_management_system.helpers.advice;
+package com.michael.college_management_system.advice;
 
 import com.michael.college_management_system.helpers.Result;
 import com.michael.college_management_system.helpers.StatusCode;
@@ -39,11 +39,8 @@ public class ExceptionHandlerAdvice {
         return new Result(false, StatusCode.FORBIDDEN, "No permission", ex.getMessage());
     }
 
-    /**
+    /*
      * Fallback handles any unhandled exceptions
-     *
-     * @param ex
-     * @return
      */
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

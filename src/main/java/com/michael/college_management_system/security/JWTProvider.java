@@ -34,6 +34,7 @@ public class JWTProvider {
                 .issuedAt(now)
                 .expiresAt(now.plus(expiresIn, ChronoUnit.HOURS))
                 .subject(authentication.getName())
+                .claim("userId", ((UserPrincipal)(authentication.getPrincipal())).getUser().getId())
                 .claim("authorities", authorities)
                 .build();
 

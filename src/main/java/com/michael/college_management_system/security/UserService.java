@@ -1,6 +1,6 @@
 package com.michael.college_management_system.security;
 
-import com.michael.college_management_system.repository.UserRepository;
+import com.michael.college_management_system.user.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

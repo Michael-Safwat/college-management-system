@@ -1,12 +1,12 @@
 package com.michael.college_management_system.security;
 
-import com.michael.college_management_system.dto.AdminDTO;
-import com.michael.college_management_system.dto.StudentDTO;
-import com.michael.college_management_system.helpers.mapper.AdminMapper;
-import com.michael.college_management_system.helpers.mapper.StudentMapper;
-import com.michael.college_management_system.model.Admin;
-import com.michael.college_management_system.model.Student;
-import com.michael.college_management_system.model.User;
+import com.michael.college_management_system.admin.AdminDTO;
+import com.michael.college_management_system.student.StudentDTO;
+import com.michael.college_management_system.admin.AdminMapper;
+import com.michael.college_management_system.student.StudentMapper;
+import com.michael.college_management_system.admin.Admin;
+import com.michael.college_management_system.student.Student;
+import com.michael.college_management_system.user.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 

@@ -1,5 +1,6 @@
-package com.michael.college_management_system.model;
+package com.michael.college_management_system.admin;
 
+import com.michael.college_management_system.user.User;
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.michael.college_management_system.dto;
+package com.michael.college_management_system.admin;
 
 import lombok.*;
 

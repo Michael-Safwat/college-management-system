@@ -1,10 +1,10 @@
 package com.michael.college_management_system.helpers;
 
-import com.michael.college_management_system.model.Admin;
-import com.michael.college_management_system.model.Department;
-import com.michael.college_management_system.model.Student;
-import com.michael.college_management_system.service.AdminService;
-import com.michael.college_management_system.service.StudentService;
+import com.michael.college_management_system.admin.Admin;
+import com.michael.college_management_system.student.Department;
+import com.michael.college_management_system.student.Student;
+import com.michael.college_management_system.admin.AdminService;
+import com.michael.college_management_system.student.StudentService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

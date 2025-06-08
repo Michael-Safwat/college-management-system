@@ -1,7 +1,4 @@
-package com.michael.college_management_system.helpers.mapper;
-
-import com.michael.college_management_system.dto.StudentDTO;
-import com.michael.college_management_system.model.Student;
+package com.michael.college_management_system.student;
 
 public class StudentMapper {
 
